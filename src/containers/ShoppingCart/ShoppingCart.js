@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { removeFromCart } from '../../actions';
 import './ShoppingCart.css';
 
 export class ShoppingCart extends Component {
 
   renderShoppingCart = () => {
-    const { shoppingCart } = this.props;
+    const { shoppingCart, removeFromCartAction } = this.props;
     return shoppingCart.map((item) => {
       return (
         <li
           key={item.id}
           className="ShoppingCart-list-item"
-          onClick={() => console.log('Remove from Cart')}
+          onClick={() => removeFromCartAction(item.id)}
         >
-          <img role="presentation" src={item.link} />
+          <img role="presentation" className={'Items-image'} src={item.link} />
           {item.title}
         </li>
       )
@@ -33,4 +34,8 @@ const mapStateToProps = ({ shoppingCart }) => ({
   shoppingCart,
 })
 
-export default connect(mapStateToProps)(ShoppingCart)
+const mapDispatchToProps = (dispatch) => ({
+  removeFromCartAction: (id) => dispatch(removeFromCart(id))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCart)

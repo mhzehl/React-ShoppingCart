@@ -8,8 +8,10 @@ export default class App extends Component {
   render() {
     return (
       <div className={'App-mainbody'} >
-        <Items />
-        <ShoppingCart />
+          <h1>For Sale!</h1>
+          <Items />
+          <h1>Shopping Cart</h1>
+          <ShoppingCart />
       </div>
     )
   }
